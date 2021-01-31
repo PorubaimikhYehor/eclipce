@@ -1,5 +1,15 @@
-<gridster [options]="options">
-  <gridster-item [item]="item" *ngFor="let item of dashboard">
-    <!-- your content here -->
-  </gridster-item>
-</gridster>
+<div [ngStyle]="gridSize" >
+  <gridster [options]="optionsResult">
+    <gridster-item [item]="item" *ngFor="let item of dashboard">
+      <div class="w-full h-full border-2 border-black"></div>
+      <!-- your content here -->
+      
+    </gridster-item>
+  </gridster>
+</div>
+
+<!-- <div>
+  <pre>
+    {{dashboard | json}}
+  </pre>
+</div> -->

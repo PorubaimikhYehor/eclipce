@@ -1,5 +1,28 @@
-<div class="w-screen h-screen">
+<!-- <div class="w-screen h-screen">
   <div class="w-full h-full p-4">
     <app-board></app-board>
   </div>
-</div>
+</div> -->
+<style>
+  #root-section {
+    height: 1vh;
+    display: grid;
+    grid-template-areas:
+      "header"
+      "main"
+      "footer";
+    grid-template-rows: 40px 1fr 40px;
+    height: 100vh;
+    margin: 0;
+
+  }
+</style>
+
+<section id='root-section'>
+  <header class="bg-green-200">header</header>
+  <main class="bg-blue-200 overflow-auto">
+    <!-- <div class="h-96 w-96 bg-red-700"></div> -->
+    <app-board></app-board>
+  </main>
+  <footer class="bg-gray-200">footer</footer>
+</section>

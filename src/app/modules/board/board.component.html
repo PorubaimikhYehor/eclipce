@@ -1,8 +1,9 @@
-<div class="h-full w-full bg-red-500">
+<!-- <div class="h-full w-full bg-red-500">
   <div class="flex" [ngStyle]="{'height': '600px'}">
     <div class="w-80 bg-yellow-400 h-full"></div>
-    <div class="w-full h-full ">
+    <div class="w-full h-full overflow-auto">
       <app-grid></app-grid>
     </div>
   </div>
-</div>
+</div> -->
+  <app-grid [dashboard]="dashboard" [startDate]="startDate" [endDate]="endDate"></app-grid>
