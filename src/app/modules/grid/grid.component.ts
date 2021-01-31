@@ -22,7 +22,7 @@ export class GridComponent implements OnInit {
 
 
   optionsResult: GridsterConfig = {
-    fixedColWidth: 10,
+    fixedColWidth: 20,
     fixedRowHeight: 40,
     pushItems: true,
     displayGrid: 'none',
@@ -56,7 +56,9 @@ export class GridComponent implements OnInit {
 
   ngOnInit() {
     this.optionsResult.minCols = this.optionsResult.maxCols = (this.endDate.valueOf() - this.startDate.valueOf()) * 2 / 3600000;
-    this.optionsResult.minRows = this.optionsResult.maxRows = this.dashboard.filter((value, index, self) => self.indexOf(value) === index).length;
+    this.optionsResult.minRows = this.optionsResult.maxRows = this.dashboard.map(i => i.productionLine).filter((value, index, self) => self.indexOf(value) === index).length;
+    console.log(this.dashboard.map(i => i.productionLine).filter((value, index, self) => self.indexOf(value) === index));
+    
     this.gridSize = this.calcWidthHeight(this.optionsResult);
     
 

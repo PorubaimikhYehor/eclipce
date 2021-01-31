@@ -14,8 +14,8 @@ export class BoardService {
     const boardItem: BoardItem[] = [];
     const { batches, stops } = opt;
     const productionLines: string[] = [];
-    batches?.map(i => productionLines.push(i.productionLine));
-    stops?.map(i => !productionLines.includes(i.productionLine) && productionLines.push(i.productionLine));
+    batches?.forEach(i => !productionLines.includes(i.productionLine) && productionLines.push(i.productionLine));
+    stops?.forEach(i => !productionLines.includes(i.productionLine) && productionLines.push(i.productionLine));
 
     //start and end date of board
     let startDate: Date;
@@ -50,11 +50,16 @@ export class BoardService {
     const createItems = (items: Batch[] | StopLine[]): void => {
       items.forEach((i: Batch | StopLine) => {
         const item: BoardItem = <BoardItem>JSON.parse(JSON.stringify(i));
-        item.x = (i.startTime.valueOf() - startDate.valueOf()) * 2  / 3600000;
+        item.x = ((i.startTime.valueOf() - startDate.valueOf()) * 2  / 3600000);
         item.cols = (i.endTime.valueOf() - i.startTime.valueOf()) * 2  / 3600000;
         item.y = productionLines.indexOf(item.productionLine);
         item.rows = 1;
         item.maxItemCols = 1000;
+        if(item.productionLine == 'pl2'){
+          console.log(productionLines);
+          
+        }
+        
         boardItem.push(item)
       })
     }
