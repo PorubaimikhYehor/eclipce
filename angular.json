@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "eclipce": {
+    "eclipse": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "outputPath": "dist/eclipce",
+            "outputPath": "dist/eclipse",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -71,18 +71,18 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "eclipce:build"
+            "browserTarget": "eclipse:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "eclipce:build:production"
+              "browserTarget": "eclipse:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "eclipce:build"
+            "browserTarget": "eclipse:build"
           }
         },
         "test": {
@@ -122,16 +122,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "eclipce:serve"
+            "devServerTarget": "eclipse:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "eclipce:serve:production"
+              "devServerTarget": "eclipse:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "eclipce"
+  "defaultProject": "eclipse"
 }

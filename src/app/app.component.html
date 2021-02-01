@@ -1,2 +1,27 @@
-<p class="bg-red-500 aspect-w-4" >Hello</p>
-<p class="text-red-900">Good</p>
+<!-- <div class="w-screen h-screen">
+  <div class="w-full h-full p-4">
+    <app-board></app-board>
+  </div>
+</div> -->
+<style>
+  #root-section {
+    height: 1vh;
+    display: grid;
+    grid-template-areas:
+      "header"
+      "main"
+      "footer";
+    grid-template-rows: 56px 1fr 40px;
+    height: 100vh;
+    margin: 0;
+  }
+</style>
+
+<section id='root-section'>
+  <header class="bg-green-200 flex items-center">
+  </header>
+  <main class=" overflow-auto">
+    <app-board></app-board>
+  </main>
+  <footer class="bg-gray-200">footer</footer>
+</section>

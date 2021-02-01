@@ -1,0 +1,39 @@
+<div class="flex" [ngStyle]="{'min-height':'25rem'}"> 
+  <div class="border-2 border-gray-200 w-60">
+    <div class="h-10 flex items-center px-2 justify-center border-t border-b border-gray-200">
+      <p class="font-semibold">Production line</p>
+    </div>
+    <div *ngFor="let item of productionLines" class=" border-t border-b h-10 flex items-center px-2">
+      <p>{{item}}</p>
+    </div>
+  </div>
+  <div class=" border-2 border-l-0 border-gray-200 overflow-auto flex-1">
+    <div [ngStyle]="{'width': gridSize.width}" class="h-10 relative">
+
+      <!-- Dates line -->
+      <div class="flex justify-around">
+        <div *ngFor="let date of dates" class=" flex-1 mx-1 border-l border-r flex justify-center">
+          <p class="font-semibold">{{date}}</p>
+        </div>
+      </div>
+
+
+      <!-- HOURS LINE -->
+      <div *ngFor="let h of hours" class="absolute text-sm bottom-px transform -translate-x-1/2"
+        [ngStyle]="{'left': h.posX}">
+        <p> {{h.val}} </p>
+      </div>
+
+    </div>
+    <div [ngStyle]="gridSize" class="relative">
+      <canvas class="absolute -top-1" #canvasgrid></canvas>
+      <gridster [options]="optionsResult" class="bg-transparent">
+        <gridster-item [item]="item" *ngFor="let item of dashboard">
+          <div class="w-full h-full border-2 border-gray-400"></div>
+          <!-- your content here -->
+        </gridster-item>
+      </gridster>
+    </div>
+
+  </div>
+</div>
