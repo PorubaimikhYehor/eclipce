@@ -73,5 +73,8 @@ export class BoardComponent implements OnInit {
     console.log(this.dashboard);
 
   }
-
+  buttonTogglesChanged(e:string ) {
+    console.log(e);
+    
+  }
 }
