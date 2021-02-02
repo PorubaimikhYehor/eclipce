@@ -9,4 +9,5 @@ export interface Batch {
   weight?: number,
   unitOfMeasure?: string
   typeOfProducts?: string
+  status?: string
 };
