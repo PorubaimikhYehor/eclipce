@@ -5,6 +5,7 @@ import { GridModule } from '../grid/grid.module';
 import { ButtonTogglesComponent } from './components/button-toggles/button-toggles.component';
 import { TimeSelectorComponent } from './components/time-selector/time-selector.component';
 // import { GridModule } from '../grid/grid.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 
 
 
@@ -12,7 +13,9 @@ import { TimeSelectorComponent } from './components/time-selector/time-selector.
   declarations: [BoardComponent, ButtonTogglesComponent, TimeSelectorComponent],
   imports: [
     CommonModule,
-    GridModule
+    GridModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[BoardComponent]
 })

@@ -1,6 +1,11 @@
 <div class="flex" [ngStyle]="{'min-height':'25rem'}"> 
   <div class="border-2 border-gray-200 w-60">
     <div class="h-10 flex items-center px-2 justify-center border-t border-b border-gray-200">
+      <p class="font-semibold">Workorders Scheduled</p>
+    </div>
+  </div>
+  <div class="border-2 border-gray-200 w-60">
+    <div class="h-10 flex items-center px-2 justify-center border-t border-b border-gray-200">
       <p class="font-semibold">Production line</p>
     </div>
     <div *ngFor="let item of productionLines" class=" border-t border-b h-10 flex items-center px-2">

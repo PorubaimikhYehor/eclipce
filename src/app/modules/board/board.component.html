@@ -6,21 +6,27 @@
     </div>
   </div>
 </div> -->
+<form [formGroup]="formVar" (ngSubmit)="onSubmit()">
 <div class="flex items-center px-4 py-2">
   <div>
     <label for="">Start date:</label>
-    <input type="date">
-    <label class="ml-4" for="">End date:</label>
-    <input type="date">
+    <input type="date" formControlName="inputStartDate">
+    <label class="ml-4">End date:</label>
+    <input type="date" formControlName="inputEndDate" >
   </div>
   <div class="ml-8">
     <div class="flex justify-center rounded-lg text-lg" role="group">
       <app-button-toggles (change)="buttonTogglesChanged($event)"></app-button-toggles>
     </div>
   </div>
-</div>
 
+  <div class="ml-8">
+    <button
+      class="bg-white  hover:bg-blue-500 hover:text-white border border-blue-500 rounded-lg px-4 py-2 mx-0 focus:outline-none focus:shadow-outline" type='submit' >Search
+    </button>
+  </div>
+</div>
+</form>
 <div class="px-4">
   <app-grid [dashboard]="dashboard" [startDate]="startDate" [endDate]="endDate"></app-grid>
-
 </div>
