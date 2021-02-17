@@ -36,8 +36,8 @@
     <div [ngStyle]="gridSize" class="relative">
       <canvas class="absolute -top-1" #canvasgrid></canvas>
       <gridster [options]="optionsResult" class="bg-transparent">
-        <gridster-item [item]="item" *ngFor="let item of dashboard" (dblclick)="displayComponent(item)">
-          <div class="flex w-full h-full border-2 border-gray-100 bg-red">
+        <gridster-item [item]="item" *ngFor="let item of dashboard" (dblclick)="displayComponent(item)" class="bg-transparent">
+          <div class="flex w-full h-full border border-gray-100 bg-red-300 rounded-lg">
             <div class="flex-1 mx-1 flex justify-center"></div>
           </div>
         </gridster-item>
@@ -46,3 +46,9 @@
   </div>
   <!-- <app-order-informations [showComponent]="showVar"></app-order-informations> -->
 </div>
+<style>
+  .gridster-item-moving{
+    /* background: black; */
+    background-color: rgba(0, 0, 0, 0);
+  }
+</style>
