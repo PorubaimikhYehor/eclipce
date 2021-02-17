@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BoardService } from './board.service';
 import { Batch } from './models/batch.model';
 import { ActivityType, BoardItem } from './models/boardItem.model';
@@ -11,6 +11,8 @@ const fakeDboard = <Batch[]>[
     // cols: 10, 
     // rows: 1, 
     activityType: 'batch',
+    id : "1",
+    name: 'strawberrry',
     startTime: new Date("2021-01-23T16:00:00Z"),
     endTime: new Date("2021-01-24T16:15:00Z"),
     process: 'p1',
@@ -25,8 +27,10 @@ const fakeDboard = <Batch[]>[
     // cols: 10, 
     // rows: 1, 
     activityType: 'batch',
-    startTime: new Date("2021-01-20T13:47:00Z"),
-    endTime: new Date("2021-01-21T16:45:00Z"),
+    id : "2",
+    name: 'strawberrry',
+    startTime: new Date("2021-01-23T16:00:00Z"),
+    endTime: new Date("2021-01-24T16:15:00Z"),
     process: 'p1',
     productionLine: 'pl1',
     typeOfProducts: 'tp1',
@@ -39,8 +43,10 @@ const fakeDboard = <Batch[]>[
     // cols: 10, 
     // rows: 1, 
     activityType: 'batch',
-    startTime: new Date("2021-01-20T16:45:00Z"),
-    endTime: new Date("2021-01-21T00:45:00Z"),
+    id : "3",
+    name: 'strawberrry',
+    startTime: new Date("2021-01-23T16:00:00Z"),
+    endTime: new Date("2021-01-24T16:15:00Z"),
     process: 'p1',
     productionLine: 'pl2',
     typeOfProducts: 'tp1',
@@ -56,16 +62,20 @@ const fakeDboard = <Batch[]>[
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
+  @Input() showComponent: boolean =false;
+  selectedItem : BoardItem | undefined | null; 
+
   formVar : FormGroup =<FormGroup>{}; 
   dashboard: BoardItem[] = [];
-  startDate: Date = new Date("2021-01-20T00:00:00Z")
-  endDate: Date = new Date("2021-01-26T00:00:00Z")
+  startDate: Date = new Date()
+  endDate: Date = new Date()
   dates : string[] = []
+  showVar: boolean = false;
   constructor(
     private boardSrv: BoardService,
     private fBuilder : FormBuilder,
   ) { }
-
+  
   
   ngOnInit(): void {
     this.dashboard = this.boardSrv.createDashboard({
@@ -78,7 +88,7 @@ export class BoardComponent implements OnInit {
         inputEndDate :''
     });
     
-    console.log(this.dashboard);
+    console.log("dashboard", this.dashboard);
     
   
 
@@ -88,61 +98,43 @@ export class BoardComponent implements OnInit {
     
   }
 
-  // public display(startDate : string , endDate : string) {
-  //   console.log("startDate", startDate.split('-'))
-  //   const dateStart=startDate.split('-')
-  //   console.log("month", dateStart[1])
-  //   const yearsStart=dateStart[0]
-  //   const monthStart=dateStart[1]
-  //   const dayStart=dateStart[2]
-
-
-  //   const dateEnd=endDate.split('-');
-  //   const yearsEnd=dateEnd[0];
-  //   const monthEnd=dateEnd[1];
-  //   const dayEnd=dateEnd[2];
-
-  //   if( parseInt(yearsStart)==parseInt(yearsEnd)){
-  //     if( parseInt(monthStart)==parseInt(monthEnd)) {
-  //       if( parseInt(dayStart)==parseInt(dayEnd)) {
-  //         console.log("pas possible");
-  //       }
-
-  //       else {
-  //         for(let i=0; i<=Math.abs(parseInt(dayStart)-parseInt(dayEnd));i++) {
-  //          let day=parseInt(dayStart)+i;
-  //           this.dates[i] = day.toString()+'-'+monthStart+'-'+yearsStart;
-  //         }
-  //       }
-
-  //     }
-
-  //     else {
-  //       ///better method ???
-
-  //     }
-  //   }
-
-  // }
-
-
+    
   public addDays(date:Date,days: number) : Date {
     date.setDate(date.getDate()+days);
     return date;
   }
 
   public getDates(startDate :string , endDate :string ) : string[] {
-    var dateArray  = new Array();
-    var currentDate = new Date(startDate);
+    let dateArray  = new Array();
+    let currentDate = new Date(startDate);
     while (currentDate <= new Date(endDate)) {
-        dateArray.push(new Date(currentDate).toISOString());
+        dateArray.push(new Date(currentDate).toDateString());
         currentDate =this.addDays(currentDate,1);
     }
     return dateArray;
   }
-  public onSubmit(): void { 
-    this.dates=this.getDates(this.formVar.value.inputStartDate,this.formVar.value.inputEndDate)
-    console.log("je suis la" ,this.dates);
-  }
+  public clickSearch(): void { 
+    // this.dates=this.getDates(this.formVar.value.inputStartDate,this.formVar.value.inputEndDate);
 
+    this.startDate = new Date(this.formVar.value.inputStartDate);
+    this.endDate = new Date(this.formVar.value.inputEndDate);
+    const valueStart= this.formVar.value.inputStartDate.length
+    const valueEnd=this.formVar.value.inputEndDate.length
+
+    if (valueEnd==0 || valueStart==0) {
+      console.log("empty")
+      alert("Start Date or End Date empty")
+      
+    }
+    
+}
+
+dblClickItem(id : string) {
+  console.log("id board compenent : " , id) 
+  this.selectedItem=this.dashboard.find(i => i.id == id)
+}
+
+clickButtonHide() {
+  this.selectedItem=null;
+}
 }

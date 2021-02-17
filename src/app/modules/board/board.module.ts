@@ -6,6 +6,8 @@ import { ButtonTogglesComponent } from './components/button-toggles/button-toggl
 import { TimeSelectorComponent } from './components/time-selector/time-selector.component';
 // import { GridModule } from '../grid/grid.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import {WorkodersDisplayModule} from '../workorders-display/workorders-display.module'
+import {OrderInformationsModule} from '../order-informations/order-informations.module'
 
 
 
@@ -15,7 +17,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
     CommonModule,
     GridModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    WorkodersDisplayModule,
+    OrderInformationsModule,
   ],
   exports:[BoardComponent]
 })

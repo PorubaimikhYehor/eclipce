@@ -6,7 +6,7 @@
     </div>
   </div>
 </div> -->
-<form [formGroup]="formVar" (ngSubmit)="onSubmit()">
+<form [formGroup]="formVar">
 <div class="flex items-center px-4 py-2">
   <div>
     <label for="">Start date:</label>
@@ -22,11 +22,13 @@
 
   <div class="ml-8">
     <button
-      class="bg-white  hover:bg-blue-500 hover:text-white border border-blue-500 rounded-lg px-4 py-2 mx-0 focus:outline-none focus:shadow-outline" type='submit' >Search
+      class="bg-white  hover:bg-blue-500 hover:text-white border border-blue-500 rounded-lg px-4 py-2 mx-0 focus:outline-none focus:shadow-outline" (click)='clickSearch()' >Search
     </button>
   </div>
 </div>
 </form>
-<div class="px-4">
-  <app-grid [dashboard]="dashboard" [startDate]="startDate" [endDate]="endDate"></app-grid>
+<div class="flex px-4">
+  <app-workorders-display [startDate]="startDate" [endDate]="endDate"></app-workorders-display>
+  <app-grid [dashboard]="dashboard" [startDate]="startDate" [endDate]="endDate" (dblClickItem)="dblClickItem($event)"></app-grid> 
+  <app-order-informations [order]="selectedItem"  (clickButtonHide)="clickButtonHide()"></app-order-informations>
 </div>

@@ -1,11 +1,6 @@
 <div class="flex" [ngStyle]="{'min-height':'25rem'}"> 
   <div class="border-2 border-gray-200 w-60">
     <div class="h-10 flex items-center px-2 justify-center border-t border-b border-gray-200">
-      <p class="font-semibold">Workorders Scheduled</p>
-    </div>
-  </div>
-  <div class="border-2 border-gray-200 w-60">
-    <div class="h-10 flex items-center px-2 justify-center border-t border-b border-gray-200">
       <p class="font-semibold">Production line</p>
     </div>
     <div *ngFor="let item of productionLines" class=" border-t border-b h-10 flex items-center px-2">
@@ -17,9 +12,17 @@
 
       <!-- Dates line -->
       <div class="flex justify-around">
-        <div *ngFor="let date of dates" class=" flex-1 mx-1 border-l border-r flex justify-center">
+        <button mat-icon-button color="primary" (click)="changeDate('before')">
+          <mat-icon >keyboard_arrow_left</mat-icon>
+        </button>
+        <div class="flex-1 mx-1 border-l flex justify-center border-r">{{dates[dateShowIndex]}}</div>
+        <!-- <div *ngFor="let date of dates" class=" flex-1 mx-1 border-l border-r flex justify-center">
           <p class="font-semibold">{{date}}</p>
-        </div>
+        </div> -->
+        <!-- <div class=" flex-1 mx-1 border-r flex justify-center" ></div> -->
+        <button mat-icon-button color="primary" (click)="changeDate('after')" >
+          <mat-icon >keyboard_arrow_right</mat-icon>
+        </button>
       </div>
 
 
@@ -33,12 +36,13 @@
     <div [ngStyle]="gridSize" class="relative">
       <canvas class="absolute -top-1" #canvasgrid></canvas>
       <gridster [options]="optionsResult" class="bg-transparent">
-        <gridster-item [item]="item" *ngFor="let item of dashboard">
-          <div class="w-full h-full border-2 border-gray-400"></div>
-          <!-- your content here -->
+        <gridster-item [item]="item" *ngFor="let item of dashboard" (dblclick)="displayComponent(item)">
+          <div class="flex w-full h-full border-2 border-gray-100 bg-red">
+            <div class="flex-1 mx-1 flex justify-center"></div>
+          </div>
         </gridster-item>
       </gridster>
     </div>
-
   </div>
+  <!-- <app-order-informations [showComponent]="showVar"></app-order-informations> -->
 </div>

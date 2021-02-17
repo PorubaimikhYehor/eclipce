@@ -1,0 +1,8 @@
+<div *ngIf="order" class="h-full flex items-center border-4 border-gray-600 w-60">
+  <div>
+    <button mat-icon-button color="primary" (click)="closeInfos()">
+      <mat-icon >keyboard_arrow_left</mat-icon>
+    </button>
+  </div>
+{{order.id | json}}
+</div>

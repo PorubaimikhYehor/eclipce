@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { VERSION as materialVersion } from '@angular/material/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'eclipse';
+  materialVersion = materialVersion;
 }
